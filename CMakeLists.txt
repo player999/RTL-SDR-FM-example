@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.12)
+project(rtlsdr_am_radio)
+
+set(CMAKE_CXX_STANDARD 17)
+find_library(RTL_SDR rtlsdr)
+find_package(Threads REQUIRED)
+find_package(PulseAudio REQUIRED)
+add_executable(rtlsdr_am_radio main.cpp RTLSDR.cpp RTLSDR.h)
+target_link_libraries(rtlsdr_am_radio "${RTL_SDR}")
+target_link_libraries(rtlsdr_am_radio Threads::Threads)
+target_link_libraries(rtlsdr_am_radio pulse-simple)
